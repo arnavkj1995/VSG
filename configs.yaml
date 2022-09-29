@@ -1,0 +1,238 @@
+defaults:
+
+  logdir: logs
+  id: default
+  traindir: ''
+  evaldir: ''
+  offline_traindir: ''
+  offline_evaldir: ''
+  offline_data_path: ''
+  save_eps: True
+  seed: 0
+  steps: 5e5
+  eval_every: 1e4
+  log_every: 1e4
+  reset_every: 0
+  gpu_growth: True
+  precision: 16
+  debug: False
+  expl_gifs: False
+  use_wandb: True
+  wandb_project: 'dreamer'
+  only_eval: False
+  only_eval_length: 500
+  n_eval_eps: 1
+  mode: 'train'
+  probe_features_type: 'post'
+
+  # Environment
+  task: 'dmc_walker_walk'
+  size: [64, 64]
+  envs: 1
+  action_repeat: 2
+  time_limit: 1000
+  grayscale: False
+  prefill: 2500
+  eval_noise: 0.0
+  clip_rewards: 'identity'
+
+  # Model
+  model_type: 'rssm'
+  dyn_cell: 'gru'
+  dyn_hidden: 200
+  dyn_deter: 200
+  dyn_stoch: 32
+  dyn_discrete: 0
+  dyn_input_layers: 1
+  dyn_output_layers: 1
+  dyn_rec_depth: 1
+  dyn_shared: False
+  dyn_mean_act: 'none'
+  dyn_std_act: 'sigmoid2'
+  dyn_min_std: 0.1
+  dyn_temp_post: True
+  dyn_kl_mask: False
+  dyn_gate_prior: 0.4
+  dyn_gate_free: 0.1
+  dyn_gate_scale: 0.0
+  grad_heads: ['image', 'reward']
+  units: 400
+  reward_layers: 2
+  discount_layers: 3
+  value_layers: 3
+  actor_layers: 4
+  act: 'elu'
+  cnn_depth: 32
+  encoder_kernels: [4, 4, 4, 4]
+  decoder_kernels: [5, 5, 6, 6]
+  decoder_thin: True
+  value_head: 'normal'
+  kl_scale: '1.0'
+  kl_balance: '0.8'
+  kl_free: '1.0'
+  kl_forward: False
+  kl_post: False
+  pred_discount: False
+  discount_scale: 1.0
+  reward_scale: 1.0
+  weight_decay: 0.0
+
+  # Training
+  batch_size: 50
+  batch_length: 50
+  train_every: 5
+  train_steps: 1
+  pretrain: 100
+  model_lr: 3e-4
+  value_lr: 8e-5
+  actor_lr: 8e-5
+  opt_eps: 1e-5
+  grad_clip: 100
+  value_grad_clip: 100
+  actor_grad_clip: 100
+  dataset_size: 0
+  oversample_ends: False
+  slow_value_target: True
+  slow_actor_target: True
+  slow_target_update: 100
+  slow_target_fraction: 1
+  opt: 'adam'
+
+  # Behavior.
+  discount: 0.99
+  discount_lambda: 0.95
+  imag_horizon: 15
+  imag_gradient: 'dynamics'
+  imag_gradient_mix: '0.1'
+  imag_sample: True
+  actor_dist: 'trunc_normal'
+  actor_entropy: '1e-4'
+  actor_state_entropy: 0.0
+  actor_init_std: 1.0
+  actor_min_std: 0.1
+  actor_disc: 5
+  actor_temp: 0.1
+  actor_outscale: 0.0
+  expl_amount: 0.0
+  eval_state_mean: False
+  collect_dyn_sample: True
+  behavior_stop_grad: True
+  value_decay: 0.0
+  future_entropy: False
+
+  # Exploration
+  expl_behavior: 'greedy'
+  expl_until: 0
+  expl_extr_scale: 0.0
+  expl_intr_scale: 1.0
+  disag_target: 'stoch'
+  disag_log: True
+  disag_models: 10
+  disag_offset: 1
+  disag_layers: 4
+  disag_units: 400
+  disag_action_cond: False
+
+bringbackshapes:
+  steps: 1e6
+  eval_every: 5e4
+  log_every: 5e4
+  wandb_project: 'bringbackshapes'
+  n_eval_eps: 10
+
+  # Environment
+  task: 'bringbackshapes2D_sparse'
+  action_repeat: 4
+  time_limit: 3000
+  prefill: 10000
+  max_distractors: 2
+  max_objects: 5
+  variable_num_objects: False
+  variable_num_distractors: False
+  variable_goal_position: False
+  agent_view_size: 125
+  arena_scale: 1.0
+
+  # Model
+  dyn_cell: 'gru_layer_norm'
+  dyn_hidden: 1024
+  dyn_deter: 1024
+  dyn_stoch: 32
+  dyn_discrete: 32
+  grad_heads: ['image', 'reward', 'discount']
+  reward_layers: 4
+  discount_layers: 4
+  value_layers: 4
+  actor_layers: 4
+  cnn_depth: 48
+  kl_free: '0.0'
+  pred_discount: True
+  weight_decay: 1e-6
+
+  # Training
+  batch_size: 16
+  batch_length: 50
+  pretrain: 1
+  model_lr: 1e-4
+  value_lr: 2e-4
+  actor_lr: 8e-5
+  oversample_ends: True
+
+  # Behavior
+  actor_entropy: '2e-3'
+
+bringbackshapes_gaussian:
+  dyn_discrete: 0
+  kl_free: 1.0
+
+bringbackshapes_svsg:
+  dyn_cell: 'sgru'
+  dyn_stoch: 1024
+  dyn_discrete: 0
+  dyn_kl_mask: True
+  model_type: 'srssm'
+  kl_free: 1.0
+
+bringbackshapes3D:
+  task: 'bringbackshapes3D_sparse'
+
+dmc:
+  # Environment
+  task: 'dmc_walker_walk'
+  time_limit: 1000
+  action_repeat: 2
+
+  # Model
+  dyn_cell: 'gru_layer_norm'
+  cnn_depth: 32
+  dyn_deter: 200
+  dyn_stoch: 32
+  dyn_discrete: 0
+  reward_layers: 2
+  value_layers: 3
+  actor_layers: 4
+  reward_scale: 2
+
+  # Training
+  dataset_size: 0
+  pretrain: 100
+  prefill: 2500
+
+  # Behavior
+  actor_dist: 'trunc_normal'
+  actor_entropy: '1e-4'
+  imag_gradient_mix: 1.0 # Do we want to keep it 1.0?
+
+  # Training
+  model_lr: 3e-4
+  value_lr: 8e-5
+  actor_lr: 8e-5
+
+debug:
+
+  debug: True
+  pretrain: 1
+  prefill: 1
+  train_steps: 1
+  batch_size: 10
+  batch_length: 20
