@@ -1,4 +1,4 @@
-# Learning Robust Dynamics Through Variational Sparse Gating
+## Learning Robust Dynamics Through Variational Sparse Gating
 
 ####  [[Project Website]]() [[BringBackShapes Code]]() [[Video]]() 
 
@@ -18,7 +18,7 @@ If you find this code useful, please reference in your paper:
   }
 ```
 
-## Setup
+### Setup
 The dependencies can be installed using the `requirements.txt` file:
 
 ```shell
@@ -33,7 +33,7 @@ pip install -r requirements.txt
 NOTE:
 In case there are issues with numpy, specifically `NotImplementedError: Cannot convert a symbolic Tensor (strided_slice:0) to a numpy array.`, follow the fix mentioned [here](https://github.com/tensorflow/models/issues/9706#issuecomment-792106149).
 
-## BringBackShapes
+### BringBackShapes
 
 To conduct experiments on the proposed BringBackShapes environment, first install the environment following the instructions [here](https://github.com/arnavkj1995/BBS)
 
