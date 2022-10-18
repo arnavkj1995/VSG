@@ -1,24 +1,12 @@
 ## Learning Robust Dynamics Through Variational Sparse Gating
 
-####  [[Project Website]]() [[BringBackShapes Code]]() [[Video]]() 
+####  [[Project Website]]() [[BringBackShapes Code]](https://github.com/arnavkj1995/BBS) [[Video]]() 
 
 Learning world models from their sensory inputs enables agents to plan for actions by imagining their future outcomes. World models have previously been shown to improve sample-efficiency in simulated environments with few objects, but have not yet been applied successfully to environments with many objects. In environments with many objects, often only a small number of them are moving or interacting at the same time. In this paper, we investigate integrating this inductive bias of sparse interactions into the latent dynamics of world models trained from pixels. First, we introduce Variational Sparse Gating (VSG), a latent dynamics model that updates its feature dimensions sparsely through stochastic binary gates. Moreover, we propose a simplified architecture Simple Variational Sparse Gating (SVSG) that removes the deterministic pathway of previous models, resulting in a fully stochastic transition function that leverages the VSG mechanism. We evaluate the two model architectures in the BringBackShapes (BBS) environment that features a large number of moving objects and partial observability, demonstrating clear improvements over prior models.
 
 <p align="center">
 <img src="https://arnavkj1995.github.io/images/Jain22.png" width="700">
 </p>
-
-If you find this code useful, please reference in your paper:
-
-```
-@InProceedings{Jain22,
-    author    = "Jain, A.~K. and Sujit, S. and Joshi, S. and Michalski, V. and Hafner, D. and Kahou, S.~E.",
-    title     = "Learning Robust Dynamics through Variational Sparse Gating",
-    booktitle = {Advances in Neural Information Processing Systems},
-    month     = {December},
-    year      = {2022}
-  }
-```
 
 ### Setup
 The dependencies can be installed using the `requirements.txt` file:
@@ -78,3 +66,18 @@ For example to run `VSG` on walker_walk,
 ```shell
 bash scripts/dmc.sh walker_walk VSG baseline 0.4 1024 1
 ```
+### Bibtex
+If you find this code useful, please reference in your paper:
+
+```
+@InProceedings{Jain22,
+    author    = "Jain, Arnav Kumar and Sujit, Shivakanth and Joshi, Shruti and Michalski, Vincent and Hafner, Danijar and Kahou, Samira Ebrahimi",
+    title     = "Learning Robust Dynamics through Variational Sparse Gating",
+    booktitle = {Advances in Neural Information Processing Systems},
+    month     = {December},
+    year      = {2022}
+  }
+```
+
+### Acknowledgements
+This code was developed using [DreamerV2](https://github.com/danijar/dreamerv2).
